@@ -16,5 +16,11 @@ jobs:
       - name: Lint app
         run: flake8 app.py
 
+      - name: Install pytest and Flask
+        run: pip install pytest flask
+
+      - name: Run tests
+        run: pytest
+
       - name: Build Docker image
         run: docker build -t myapp:ci .
