@@ -30,6 +30,11 @@ jobs:
           pip install semgrep
           semgrep --config auto .
 
+      - name: Dependency scan
+        run: |
+          pip install safety
+          safety check -r requirements.txt
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
