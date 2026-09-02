@@ -22,14 +22,17 @@ jobs:
       - name: Run tests
         run: pytest
 
+      # Security Gate 1
       - name: Gitleaks scan
         uses: gitleaks/gitleaks-action@v2
 
+      # Security Gate 2
       - name: Semgrep scan
         run: |
           pip install semgrep
           semgrep --config auto .
 
+      # Security Gate 3
       - name: Dependency scan
         run: |
           pip install safety
@@ -38,6 +41,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t myapp:ci .
 
+      # Security Gate 4
       - name: Trivy scan
         uses: aquasecurity/trivy-action@master
         with:
